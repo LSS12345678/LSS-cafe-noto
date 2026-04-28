@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Noto - 街角の小さな休息場所</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .no-img-spacer {
+            width: 80px;
+            display: none;
+        }
+        @media (min-width: 640px) {
+            .no-img-spacer {
+                display: block;
+            }
+        }
+        .gallery-img {
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+        .instagram-grid img {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0">
+                    <span class="serif text-2xl font-bold tracking-wider text-amber-900">CAFE NOTO</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-amber-700 transition">Home</a>
+                        <a href="#about" class="hover:text-amber-700 transition">About</a>
+                        <a href="#interior" class="hover:text-amber-700 transition">Interior</a>
+                        <a href="#menu" class="hover:text-amber-700 transition">Menu</a>
+                        <a href="#takeout" class="hover:text-amber-700 transition">Takeout</a>
+                        <a href="#access" class="hover:text-amber-700 transition">Access</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-stone-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-stone-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="block px-3 py-2 text-stone-600">Home</a>
+                <a href="#about" class="block px-3 py-2 text-stone-600">About</a>
+                <a href="#interior" class="block px-3 py-2 text-stone-600">Interior</a>
+                <a href="#menu" class="block px-3 py-2 text-stone-600">Menu</a>
+                <a href="#takeout" class="block px-3 py-2 text-stone-600">Takeout</a>
+                <a href="#access" class="block px-3 py-2 text-stone-600">Access</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center text-white text-center px-4">
+        <div>
+            <h1 class="serif text-5xl md:text-7xl mb-4 italic">Time for a Coffee Break</h1>
+            <p class="text-lg md:text-xl font-light tracking-widest mb-8">厳選された豆と、静かな時間を提供します。</p>
+            <a href="#menu" class="inline-block border-2 border-white px-8 py-3 hover:bg-white hover:text-stone-900 transition duration-300 uppercase tracking-widest text-sm font-bold">View Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 max-w-5xl mx-auto px-4 fade-in">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="[店内の様子]" class="rounded-lg shadow-xl">
+            </div>
+            <div class="space-y-6">
+                <h2 class="serif text-4xl italic text-amber-900">Our Philosophy</h2>
+                <p class="leading-relaxed text-stone-600">
+                    Cafe Notoでは、一杯のコーヒーが持つ力を信じています。忙しい日常から一歩離れ、自分自身と向き合うための空間を作りました。
+                </p>
+                <p class="leading-relaxed text-stone-600">
+                    店主が自ら焙煎した新鮮な豆を使用し、最も香りが引き立つ方法でドリップしています。季節ごとに変わる手作りスイーツと共にお楽しみください。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interior Section -->
+    <section id="interior" class="py-24 bg-white fade-in">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="serif text-4xl italic text-amber-900 mb-4">The Space</h2>
+                <p class="text-stone-500 max-w-xl mx-auto italic">五感で感じる、木の温もりと静寂の調和。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="[カウンター席]" class="gallery-img w-full h-64 object-cover">
+                    <div class="p-6 bg-white">
+                        <h4 class="font-bold mb-2">Bar Counter</h4>
+                        <p class="text-sm text-stone-600">バリスタの手仕事を感じられる特等席。木製のカウンターが温かみを添えます。</p>
+                    </div>
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="[窓際の席]" class="gallery-img w-full h-64 object-cover">
+                    <div class="p-6 bg-white">
+                        <h4 class="font-bold mb-2">Window Side</h4>
+                        <p class="text-sm text-stone-600">柔らかな自然光が差し込む窓際。読書や物思いに耽るのに最適な空間です。</p>
+                    </div>
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="[インテリアの細部]" class="gallery-img w-full h-64 object-cover">
+                    <div class="p-6 bg-white">
+                        <h4 class="font-bold mb-2">Minimal Decor</h4>
+                        <p class="text-sm text-stone-600">余白を大切にした装飾。静かな時間を邪魔しない、控えめな美しさを追求しています。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-stone-50 p-8 rounded-xl border border-stone-200">
+                <div class="grid md:grid-cols-2 gap-8 items-center text-center md:text-left">
+                    <div>
+                        <h3 class="serif text-2xl italic text-amber-900 mb-4">Quiet Policy</h3>
+                        <p class="text-stone-600 text-sm leading-loose">
+                            店内は「静寂」を一つのサービスと考えております。BGMは控えめに、会話もトーンを落としてお楽しみいただくようお願いしております。
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 bg-white rounded shadow-sm text-center border border-stone-100">
+                            <span class="block text-xl font-bold text-amber-900">12</span>
+                            <span class="text-xs text-stone-400 uppercase tracking-tighter">Seats</span>
+                        </div>
+                        <div class="p-4 bg-white rounded shadow-sm text-center border border-stone-100">
+                            <span class="block text-xl font-bold text-amber-900">Free</span>
+                            <span class="text-xs text-stone-400 uppercase tracking-tighter">Wi-Fi</span>
+                        </div>
+                        <div class="p-4 bg-white rounded shadow-sm text-center border border-stone-100">
+                            <span class="block text-lg font-bold text-amber-900">NO</span>
+                            <span class="text-[10px] text-stone-400 uppercase tracking-tighter">Pets</span>
+                        </div>
+                        <div class="p-4 bg-white rounded shadow-sm text-center border border-stone-100">
+                            <span class="block text-lg font-bold text-amber-900">NO</span>
+                            <span class="text-[10px] text-stone-400 uppercase tracking-tighter">Smoking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Takeout Section -->
+    <section id="takeout" class="py-24 bg-amber-900 text-stone-100 fade-in">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <h2 class="serif text-4xl italic mb-6">Takeout Available</h2>
+                <p class="leading-relaxed mb-8 opacity-90">
+                    ご自宅やオフィスでも、Cafe Noto’の味をお楽しみいただけます。ドリンク各種に加え、焼き立てのスコーンやケーキもテイクアウト可能です。
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4 border-l-2 border-amber-400 pl-4">
+                        <div>
+                            <p class="font-bold">Drink & Sweets</p>
+                            <p class="text-xs opacity-70 italic">全メニュー 10% OFFにて提供中</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 border-l-2 border-amber-400 pl-4">
+                        <div>
+                            <p class="font-bold">Eco Friendly</p>
+                            <p class="text-xs opacity-70 italic">マイボトル持参でさらに ¥50 引き</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="[テイクアウトカップ]" class="rounded-lg shadow-2xl grayscale-[0.2]">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 bg-stone-100 fade-in">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="serif text-4xl mb-16 italic text-amber-900">Cafe Menu</h2>
+            <div class="grid md:grid-cols-2 gap-16 text-left">
+                <!-- Drinks -->
+                <div>
+                    <h3 class="serif text-2xl mb-8 border-b border-stone-300 pb-2">Coffee & Tea</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-center space-x-4">
+                            <div class="no-img-spacer"></div>
+                            <div class="flex-1 border-b border-dotted border-stone-400 pb-1 flex justify-between items-end">
+                                <div><span class="block font-bold">ハウスブレンド</span><span class="text-xs text-stone-500 italic">Balanced & Smooth</span></div>
+                                <span class="font-bold">¥550</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="[シングルオリジン]" class="menu-img">
+                            <div class="flex-1 border-b border-dotted border-stone-400 pb-1 flex justify-between items-end">
+                                <div><span class="block font-bold">シングルオリジン</span><span class="text-xs text-stone-500 italic">Weekly Special</span></div>
+                                <span class="font-bold">¥650</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <div class="no-img-spacer"></div>
+                            <div class="flex-1 border-b border-dotted border-stone-400 pb-1 flex justify-between items-end">
+                                <div><span class="block font-bold">カフェラテ</span><span class="text-xs text-stone-500 italic">Creamy & Soft</span></div>
+                                <span class="font-bold">¥600</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Foods -->
+                <div>
+                    <h3 class="serif text-2xl mb-8 border-b border-stone-300 pb-2">Sweets & Food</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-center space-x-4">
+                            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="[濃厚ベイクドチーズケーキ]" class="menu-img">
+                            <div class="flex-1 border-b border-dotted border-stone-400 pb-1 flex justify-between items-end">
+                                <div><span class="block font-bold">濃厚ベイクドチーズケーキ</span><span class="text-xs text-stone-500 italic">Rich & Tangy</span></div>
+                                <span class="font-bold">¥580</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="[季節のフルーツタルト]" class="menu-img">
+                            <div class="flex-1 border-b border-dotted border-stone-400 pb-1 flex justify-between items-end">
+                                <div><span class="block font-bold">季節のフルーツタルト</span><span class="text-xs text-stone-500 italic">Fresh & Seasonal</span></div>
+                                <span class="font-bold">¥650</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <div class="no-img-spacer"></div>
+                            <div class="flex-1 border-b border-dotted border-stone-400 pb-1 flex justify-between items-end">
+                                <div><span class="block font-bold">クラシック・スコーン (2個)</span><span class="text-xs text-stone-500 italic">Traditional Style</span></div>
+                                <span class="font-bold">¥450</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNS Section -->
+    <section class="py-24 bg-white fade-in">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="serif text-3xl italic text-amber-900 mb-2">Follow Us</h2>
+                <p class="text-stone-500 italic text-sm">@cafe_noto_official</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 instagram-grid">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80" alt="[SNS投稿1]" class="rounded hover:opacity-80 transition cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="[SNS投稿2]" class="rounded hover:opacity-80 transition cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="[SNS投稿3]" class="rounded hover:opacity-80 transition cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=400&q=80" alt="[SNS投稿4]" class="rounded hover:opacity-80 transition cursor-pointer">
+            </div>
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-block px-8 py-3 bg-stone-900 text-white rounded shadow-lg hover:bg-stone-700 transition font-bold text-sm tracking-widest">OPEN INSTAGRAM</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Access Section -->
+    <section id="access" class="py-24 bg-stone-50 fade-in">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="serif text-4xl mb-12 italic text-amber-900">Visit Us</h2>
+            <div class="max-w-2xl mx-auto space-y-4 text-stone-600">
+                <p>〒000-0000 東京都〇〇区△△ 1-2-3</p>
+                <p>OPEN: 10:00 - 19:00 (L.O. 18:30)</p>
+                <p>CLOSED: Tuesday / 2nd Wednesday</p>
+            </div>
+            <div class="mt-12 bg-stone-200 h-64 w-full flex items-center justify-center rounded-lg">
+                <span class="text-stone-400">Map Placeholder</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12 text-center text-sm">
+        <p class="serif text-xl text-white mb-4 italic">Cafe Noto</p>
+        <p>&copy; 2024 Cafe Noto. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
